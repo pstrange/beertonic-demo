@@ -1,0 +1,17 @@
+ext{
+    beertonic = [
+            versionCode:  100,
+            versionName:  "0.1.0",
+            appName:      "BeerTonic",
+            configsName:  "BeerTonicPreferences",
+            envName:      [debug:   "quality",
+                           staging: "staging",
+                           release: "production"],
+            dbName:       [debug:   "BEERS_DB_QA",
+                           staging: "BEERS_DB_ST",
+                           release: "BEERS_DB_Q"],
+            apiHost:      [debug:   "https://api.punkapi.com/v2/",
+                           staging: "https://api.punkapi.com/v2/",
+                           release: "https://api.punkapi.com/v2/"]
+    ]
+}

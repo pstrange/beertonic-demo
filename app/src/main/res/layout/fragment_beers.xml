@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="isCollapsed"
+            type="Boolean" />
+        <variable
+            name="adapter"
+            type="app.fintonic.demo.presentation.views.adapters.BeersAdapter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:fitsSystemWindows="true">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsing_toolbar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    android:descendantFocusability="afterDescendants"
+                    android:background="@color/white"
+                    app:contentScrim="@color/orange"
+                    app:titleEnabled="false"
+                    app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fitsSystemWindows="true"
+                        app:layout_collapseMode="parallax">
+
+                        <ImageView
+                            android:id="@+id/toolbarImage"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@color/orange"
+                            app:layout_constraintDimensionRatio="H,4:3"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <LinearLayout
+                            android:id="@+id/view_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            app:layout_constraintTop_toTopOf="@id/toolbarImage"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <TextView
+                                android:id="@+id/text_title_top"
+                                style="@style/TextView.TitleTop"
+                                android:layout_marginStart="@dimen/margin_horizontal"
+                                android:layout_marginEnd="@dimen/margin_horizontal"
+                                android:gravity="start"
+                                android:text="@string/beers_title"/>
+
+                            <TextView
+                                android:id="@+id/text_time"
+                                style="@style/TextView.BreakingTime"
+                                android:layout_width="match_parent"
+                                android:layout_marginStart="@dimen/margin_horizontal"
+                                android:layout_marginEnd="@dimen/margin_horizontal"
+                                android:textSize="14sp"
+                                android:gravity="start"
+                                android:layout_gravity="bottom"
+                                android:text="@string/beers_subtitle"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layout_list_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:background="@drawable/background_top_list"
+                            app:layout_constraintBottom_toBottomOf="@id/toolbarImage"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <TextView
+                                android:id="@+id/text_title_list"
+                                style="@style/TextView.TitleTop.Black"
+                                android:layout_marginStart="@dimen/margin_horizontal"
+                                android:layout_marginEnd="@dimen/margin_horizontal"
+                                android:gravity="start"
+                                android:text="@string/beers_explore"/>
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/tool_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:titleTextColor="@color/white"
+                        app:layout_collapseMode="pin"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+                    <TextView
+                        android:id="@+id/text_title_autoscroll"
+                        style="@style/TextView.TitleTop"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_marginStart="@dimen/margin_horizontal"
+                        android:layout_marginEnd="@dimen/margin_horizontal"
+                        android:alpha="0"
+                        android:elevation="1dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/beers_title"
+                        app:layout_collapseMode="pin"/>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_view_beer"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layout_loader"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center_horizontal"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_xxlarge"
+                    android:indeterminateTint="@color/orange"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

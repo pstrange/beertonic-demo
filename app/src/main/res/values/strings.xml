@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_ref">TechDemo</string>
+    <string name="alert_title_loading">Loading...</string>
+    <string name="beers_title" tools:ignore="ExtraTranslation">We love beer</string>
+    <string name="beers_subtitle" tools:ignore="ExtraTranslation">Please enjoy with company</string>
+    <string name="beers_explore" tools:ignore="ExtraTranslation">Explore our catalogue</string>
+
+    <string name="fav_title" tools:ignore="ExtraTranslation">My favorites</string>
+    <string name="fav_empty_msg" tools:ignore="ExtraTranslation">Ops! nothing here\nPlease add your favorite beer on the detail of each one!</string>
+</resources>

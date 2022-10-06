@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="isFav"
+            type="Boolean" />
+        <variable
+            name="beer"
+            type="app.fintonic.demo.domain.models.response.BeerDto" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center_vertical">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/button_close"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/ic_action_keyboard_backspace"
+                android:background="@drawable/ripple_trans_to_gray_circular"
+                android:tint="@color/black"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/image_thumb"
+                    android:layout_width="200dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/margin_large"
+                    app:srcCompat="@drawable/beer_logo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:imageUrl="@{beer.imageUrl}"
+                    tools:ignore="ContentDescription" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_large"
+                    app:layout_constraintTop_toBottomOf="@id/image_thumb">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_title"
+                        style="@style/TextView.TitleTop.Black"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="@dimen/margin_horizontal"
+                        android:layout_marginEnd="@dimen/margin_horizontal"
+                        android:text="@{beer.name}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/text_tag"
+                        style="@style/TextView.BreakingTime.Black"
+                        android:layout_marginStart="@dimen/margin_horizontal"
+                        android:layout_marginEnd="@dimen/margin_horizontal"
+                        android:layout_marginTop="@dimen/margin_tiny"
+                        android:text="@{beer.tagLine}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/image_fav"
+                        app:layout_constraintTop_toBottomOf="@id/text_title"/>
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/image_fav"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginEnd="@dimen/margin_horizontal"
+                        android:layout_marginTop="@dimen/margin_tiny"
+                        android:src="@{isFav ? @drawable/ic_action_favorite_selected : @drawable/ic_action_menu_fav}"
+                        android:background="@drawable/ripple_trans_to_gray_circular"
+                        app:tint="@color/brown"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_title"/>
+
+                    <TextView
+                        android:id="@+id/text_description"
+                        style="@style/TextView.BreakingTime.Black"
+                        android:layout_marginStart="@dimen/margin_horizontal"
+                        android:layout_marginEnd="@dimen/margin_horizontal"
+                        android:layout_marginBottom="@dimen/margin_horizontal"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:text="@{beer.description}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_tag"/>
+
+                    <TextView
+                        android:id="@+id/text_ingredients"
+                        style="@style/TextView.BreakingTime.Black"
+                        android:layout_marginStart="@dimen/margin_horizontal"
+                        android:layout_marginEnd="@dimen/margin_horizontal"
+                        android:layout_marginBottom="@dimen/margin_horizontal"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:text="@{beer.ingredients.toString()}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_description"/>
+
+                    <TextView
+                        android:id="@+id/text_tips"
+                        style="@style/TextView.BreakingTime.Black"
+                        android:layout_marginStart="@dimen/margin_horizontal"
+                        android:layout_marginEnd="@dimen/margin_horizontal"
+                        android:layout_marginBottom="@dimen/margin_horizontal"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:text="@{beer.brewersTips}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_ingredients"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>

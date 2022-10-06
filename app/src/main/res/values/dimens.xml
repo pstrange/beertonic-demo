@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="margin_tiny">5dp</dimen>
+    <dimen name="margin_small">10dp</dimen>
+    <dimen name="margin_medium">15dp</dimen>
+    <dimen name="margin_large">25dp</dimen>
+    <dimen name="margin_xlarge">30dp</dimen>
+    <dimen name="margin_xxlarge">35dp</dimen>
+    <dimen name="margin_xxxlarge">40dp</dimen>
+
+    <dimen name="margin_horizontal">20dp</dimen>
+    <dimen name="margin_vertical">15dp</dimen>
+
+    <dimen name="thumb_width">60dp</dimen>
+    <dimen name="thumb_height">80dp</dimen>
+
+</resources>
